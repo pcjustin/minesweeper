@@ -4,11 +4,11 @@ import sys
 
 pygame.init()
 
-CELL_SIZE = 60
+CELL_SIZE = 30
 GRID_WIDTH = 16
 GRID_HEIGHT = 16
 MINES_COUNT = 40
-MARGIN = 80
+MARGIN = 40
 
 WIDTH = GRID_WIDTH * CELL_SIZE
 HEIGHT = GRID_HEIGHT * CELL_SIZE + MARGIN
@@ -31,8 +31,8 @@ COLORS = {
 
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("踩地雷")
-font = pygame.font.SysFont("arial", 30, bold=True)
-big_font = pygame.font.SysFont("arial", 40, bold=True)
+font = pygame.font.SysFont("arial", 15, bold=True)
+big_font = pygame.font.SysFont("arial", 20, bold=True)
 
 
 class Minesweeper:
