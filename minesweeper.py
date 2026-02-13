@@ -64,14 +64,17 @@ class Minesweeper:
         for y in range(GRID_HEIGHT):
             for x in range(GRID_WIDTH):
                 if self.grid[y][x] != -1:
-                    count = 0
+                    neighbor_count = 0
+                    mine_count = 0
                     for dy in [-1, 0, 1]:
                         for dx in [-1, 0, 1]:
                             ny, nx = y + dy, x + dx
                             if 0 <= ny < GRID_HEIGHT and 0 <= nx < GRID_WIDTH:
-                                if self.grid[ny][nx] == -1:
-                                    count += 1
-                    self.grid[y][x] = count
+                                if ny != y or nx != x:
+                                    neighbor_count += 1
+                                    if self.grid[ny][nx] == -1:
+                                        mine_count += 1
+                    self.grid[y][x] = neighbor_count - mine_count
 
     def reveal(self, x, y):
         if self.flagged[y][x] or self.revealed[y][x]:
