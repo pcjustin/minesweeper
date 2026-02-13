@@ -116,6 +116,14 @@ class Minesweeper:
         if self.grid[y][x] <= 0:
             return
 
+        neighbor_count = 0
+        for dy in [-1, 0, 1]:
+            for dx in [-1, 0, 1]:
+                ny, nx = y + dy, x + dx
+                if 0 <= ny < GRID_HEIGHT and 0 <= nx < GRID_WIDTH:
+                    if ny != y or nx != x:
+                        neighbor_count += 1
+
         flag_count = 0
         for dy in [-1, 0, 1]:
             for dx in [-1, 0, 1]:
@@ -124,7 +132,8 @@ class Minesweeper:
                     if self.flagged[ny][nx]:
                         flag_count += 1
 
-        if flag_count == self.grid[y][x]:
+        mine_count = neighbor_count - self.grid[y][x]
+        if flag_count == mine_count:
             for dy in [-1, 0, 1]:
                 for dx in [-1, 0, 1]:
                     ny, nx = y + dy, x + dx
